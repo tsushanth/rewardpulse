@@ -62,6 +62,10 @@ struct RewardPulseApp: App {
         // Check persisted entitlements (fast — reads UserDefaults first, then App Store)
         await StoreKitManager.shared.checkCurrentEntitlements()
 
+        // Report subscription status as a user property so Firebase segments work
+        let subscriptionStatus = PremiumManager.shared.isPremium ? "premium" : "free"
+        AnalyticsService.shared.setUserProperties(subscriptionStatus: subscriptionStatus)
+
         // Load products in background so paywall renders immediately
         Task {
             await StoreKitManager.shared.loadProducts()

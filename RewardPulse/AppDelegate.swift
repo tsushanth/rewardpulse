@@ -5,14 +5,18 @@ import FacebookCore
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        // 1. Firebase — must be first so subsequent SDK calls can log to it
         FirebaseApp.configure()
 
+        // 2. Facebook SDK — initialise after Firebase
         ApplicationDelegate.shared.application(
             application,
             didFinishLaunchingWithOptions: launchOptions
         )
 
+        // 3. Post-launch tasks
         Task {
+            AnalyticsService.shared.log(.appOpen)
             await AttributionService.shared.resolveAttribution()
         }
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  PLACEHOLDER — Replace this file with the real GoogleService-Info.plist downloaded from
+  https://console.firebase.google.com → Project Settings → Your apps → iOS app.
+
+  Steps:
+    1. Create a Firebase project (or use an existing one)
+    2. Register the iOS app with bundle ID: com.appfactory.rewardpulse
+    3. Download GoogleService-Info.plist
+    4. Replace this file entirely with the downloaded file
+    5. Do NOT commit the real file to source control (add it to .gitignore)
+-->
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>REPLACE_ME.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>REPLACE_ME</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>REPLACE_ME</string>
+	<key>API_KEY</key>
+	<string>REPLACE_ME</string>
+	<key>GCM_SENDER_ID</key>
+	<string>REPLACE_ME</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.appfactory.rewardpulse</string>
+	<key>PROJECT_ID</key>
+	<string>REPLACE_ME</string>
+	<key>STORAGE_BUCKET</key>
+	<string>REPLACE_ME.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<true/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<false/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:REPLACE_ME:ios:REPLACE_ME</string>
+</dict>
+</plist>
