@@ -22,8 +22,8 @@ final class RewardsViewModel: ObservableObject {
     var minimumPayoutFormatted: String { String(format: "$%.2f", Double(minimumPayoutCents) / 100.0) }
 
     func onAppear(context: ModelContext) async {
-        isPremium = await RevenueCatService.shared.isEntitled
-        minimumPayoutCents = isPremium ? Constants.premiumPayoutThresholdCents : Constants.freePayoutThresholdCents
+        isPremium = PremiumManager.shared.isPremium
+        minimumPayoutCents = PremiumManager.shared.minimumPayoutCents
 
         balanceCents = (try? await APIService.shared.fetchBalance()) ?? balanceCents
 

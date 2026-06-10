@@ -11,10 +11,9 @@ final class EarnViewModel: ObservableObject {
     @Published var errorMessage: String?
 
     private let apiService: APIService
-    private let rcService: RevenueCatService
     private let analyticsService: AnalyticsService
 
-    var isPremium: Bool { rcService.isEntitled }
+    var isPremium: Bool { PremiumManager.shared.isPremium }
 
     var sortedSurveys: [Survey] {
         surveys
@@ -28,10 +27,8 @@ final class EarnViewModel: ObservableObject {
     }
 
     init(apiService: APIService = .shared,
-         rcService: RevenueCatService = .shared,
          analyticsService: AnalyticsService = .shared) {
         self.apiService = apiService
-        self.rcService = rcService
         self.analyticsService = analyticsService
     }
 

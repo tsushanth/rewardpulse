@@ -12,10 +12,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             didFinishLaunchingWithOptions: launchOptions
         )
 
-        Task { @MainActor in
-            RevenueCatService.shared.configure(apiKey: Constants.revenueCatAPIKey)
-        }
-
         Task {
             await AttributionService.shared.resolveAttribution()
         }

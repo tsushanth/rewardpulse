@@ -16,14 +16,16 @@ struct HomeView: View {
                 BalanceSummaryView(
                     balanceCents: vm.balanceCents,
                     minimumPayoutCents: vm.minimumPayoutCents,
-                    onRedeemTap: { showPayoutFlow = true }
+                    onRedeemTap: { showPayoutFlow = true },
+                    isPremium: vm.isPremium
                 )
 
                 if vm.streakDays > 0 {
                     StreakBannerView(
                         days: vm.streakDays,
                         multiplier: vm.streakMultiplier,
-                        insuranceAvailable: vm.streakInsuranceAvailable
+                        insuranceAvailable: vm.streakInsuranceAvailable,
+                        isPremium: vm.isPremium
                     )
                 }
 

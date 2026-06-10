@@ -29,6 +29,17 @@ struct StatsView: View {
                     metricTile("Avg per Survey", vm.avgRewardFormatted, "chart.bar.fill", .green)
                 }
 
+                // Full analytics section header
+                HStack {
+                    Text("Advanced Analytics")
+                        .font(.headline)
+                    ProBadgeView()
+                    Spacer()
+                }
+                .padding(.horizontal, 4)
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel("Advanced Analytics — Premium feature")
+
                 if vm.canSeeFullStats {
                     VStack(spacing: 16) {
                         VStack(alignment: .leading, spacing: 8) {

@@ -43,23 +43,28 @@ struct RewardPulseApp: App {
             .modelContainer(modelContainer)
             .environmentObject(container)
             .environmentObject(AppRouter.shared)
-            .task { await checkOnboardingStatus() }
+            .task { await bootstrap() }
+            .onReceive(NotificationCenter.default.publisher(for: .premiumStatusDidChange)) { note in
+                guard let isPremium = note.userInfo?["isPremium"] as? Bool else { return }
+                let context = modelContainer.mainContext
+                PremiumManager.shared.syncToProfile(isPremium: isPremium, context: context)
+            }
         }
     }
 
     @MainActor
-    private func checkOnboardingStatus() async {
+    private func bootstrap() async {
         let context = modelContainer.mainContext
         let descriptor = FetchDescriptor<UserProfile>()
         let profiles = try? context.fetch(descriptor)
         showOnboarding = profiles?.first?.onboardingCompleted != true
 
-        Task {
-            await RevenueCatService.shared.checkEntitlement()
-        }
+        // Check persisted entitlements (fast — reads UserDefaults first, then App Store)
+        await StoreKitManager.shared.checkCurrentEntitlements()
 
+        // Load products in background so paywall renders immediately
         Task {
-            await StoreKitService.shared.listenForTransactionUpdates()
+            await StoreKitManager.shared.loadProducts()
         }
     }
 }

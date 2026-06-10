@@ -4,6 +4,7 @@ struct StreakBannerView: View {
     let days: Int
     let multiplier: Double
     let insuranceAvailable: Bool
+    var isPremium: Bool = false
 
     private var milestoneLabel: String? {
         switch days {
@@ -48,9 +49,14 @@ struct StreakBannerView: View {
                             .foregroundStyle(.green)
                     }
                     if insuranceAvailable {
-                        Label("Insurance", systemImage: "shield.fill")
-                            .font(.caption)
-                            .foregroundStyle(.blue)
+                        HStack(spacing: 4) {
+                            Label("Insurance", systemImage: "shield.fill")
+                                .font(.caption)
+                                .foregroundStyle(.blue)
+                            if !isPremium {
+                                ProBadgeView(style: .small)
+                            }
+                        }
                     }
                 }
             }

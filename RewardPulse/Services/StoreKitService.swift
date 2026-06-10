@@ -1,39 +1,23 @@
 import StoreKit
 import Foundation
 
+// MARK: - StoreKitService (Legacy)
+//
+// Retained for source compatibility. New code should use StoreKitManager directly.
+// StoreKitManager is the canonical StoreKit 2 implementation.
+
 actor StoreKitService {
     static let shared = StoreKitService()
     private init() {}
 
-    private let productIDs: Set<String> = [
-        "com.com.appfactory.rewardpulse.subscription.weekly",
-        "com.com.appfactory.rewardpulse.subscription.yearly",
-        "com.com.appfactory.rewardpulse.subscription.lifetime",
-        "com.com.appfactory.rewardpulse.iap.small_iap"
-    ]
-
-    private(set) var products: [Product] = []
-
-    func loadProducts() async throws {
-        products = try await Product.products(for: productIDs)
-    }
-
-    func purchase(_ product: Product) async throws -> Transaction? {
-        let result = try await product.purchase()
-        switch result {
-        case .success(let verification):
-            let transaction = try checkVerified(verification)
-            await transaction.finish()
-            return transaction
-        case .pending:
-            return nil
-        case .userCancelled:
-            return nil
-        @unknown default:
-            return nil
+    /// Forwards to StoreKitManager — maintained for any legacy call sites.
+    func restorePurchases() async throws {
+        try await StoreKitService.runOnMain {
+            try await StoreKitManager.shared.restorePurchases()
         }
     }
 
+    /// Verifies a StoreKit VerificationResult.
     func checkVerified<T>(_ result: VerificationResult<T>) throws -> T {
         switch result {
         case .unverified:
@@ -43,26 +27,14 @@ actor StoreKitService {
         }
     }
 
-    func listenForTransactionUpdates() async {
-        for await result in Transaction.updates {
-            guard let transaction = try? checkVerified(result) else { continue }
-            await RevenueCatService.shared.syncTransaction(transaction)
-            await transaction.finish()
-        }
-    }
+    /// Listens for transaction updates. Call once at app launch.
+    /// StoreKitManager already does this internally — this is a no-op to avoid duplicate listeners.
+    func listenForTransactionUpdates() async {}
 
-    func restorePurchases() async throws {
-        try await AppStore.sync()
-    }
+    // MARK: - Private
 
-    func currentEntitlements() async -> [Transaction] {
-        var transactions: [Transaction] = []
-        for await result in Transaction.currentEntitlements {
-            if let transaction = try? checkVerified(result) {
-                transactions.append(transaction)
-            }
-        }
-        return transactions
+    private static func runOnMain<T: Sendable>(_ closure: @MainActor @Sendable () async throws -> T) async throws -> T {
+        try await MainActor.run { try await closure() }
     }
 }
 

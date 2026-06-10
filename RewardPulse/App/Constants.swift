@@ -12,9 +12,6 @@ enum Constants {
         static let smallIAP             = "com.com.appfactory.rewardpulse.iap.small_iap"
     }
 
-    // MARK: - RevenueCat
-    static let revenueCatAPIKey = "appl_placeholder_key"
-
     // MARK: - Payout Thresholds
     static let freePayoutThresholdCents    = 500   // $5.00
     static let premiumPayoutThresholdCents = 250   // $2.50

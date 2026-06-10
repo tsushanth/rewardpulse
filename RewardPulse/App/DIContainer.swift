@@ -7,7 +7,8 @@ final class DIContainer: ObservableObject {
     let apiService: APIService
     let authService: AuthService
     let storeKitService: StoreKitService
-    let revenueCatService: RevenueCatService
+    let storeKitManager: StoreKitManager
+    let premiumManager: PremiumManager
     let analyticsService: AnalyticsService
     let notificationService: NotificationService
     let attributionService: AttributionService
@@ -17,7 +18,8 @@ final class DIContainer: ObservableObject {
         self.apiService = APIService.shared
         self.authService = AuthService.shared
         self.storeKitService = StoreKitService.shared
-        self.revenueCatService = RevenueCatService.shared
+        self.storeKitManager = StoreKitManager.shared
+        self.premiumManager = PremiumManager.shared
         self.analyticsService = AnalyticsService.shared
         self.notificationService = NotificationService.shared
         self.attributionService = AttributionService.shared

@@ -40,7 +40,7 @@ final class StatsViewModel: ObservableObject {
         isLoading = true
         defer { isLoading = false }
 
-        isPremium = await RevenueCatService.shared.isEntitled
+        isPremium = PremiumManager.shared.isPremium
         AnalyticsService.shared.log(.screenView(name: "stats"))
 
         let earningDescriptor = FetchDescriptor<EarningEvent>(

@@ -4,6 +4,7 @@ struct BalanceSummaryView: View {
     let balanceCents: Int
     let minimumPayoutCents: Int
     let onRedeemTap: () -> Void
+    var isPremium: Bool = false
 
     @State private var displayedCents: Int = 0
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -45,9 +46,14 @@ struct BalanceSummaryView: View {
                         Text("\(Int(progress * 100))% to next payout")
                             .font(.subheadline.weight(.medium))
                     }
-                    Text("Minimum: \(minimumFormatted)")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+                    HStack(spacing: 6) {
+                        Text("Minimum: \(minimumFormatted)")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        if isPremium {
+                            ProBadgeView(style: .small)
+                        }
+                    }
                 }
 
                 Spacer()

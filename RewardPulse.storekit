@@ -2,7 +2,7 @@
   "identifier" : "7F83B7FA-3E3A-4FDE-A4C7-E7B6EC7D49D7",
   "nonConsumableProducts" : [
     {
-      "displayPrice" : "49.99",
+      "displayPrice" : "92.80",
       "familyShareable" : false,
       "internalID" : "A3B5C7D9-1234-5678-ABCD-EF0123456789",
       "localizations" : [
@@ -82,7 +82,7 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "4.99",
+          "displayPrice" : "4.00",
           "familyShareable" : false,
           "freeTrials" : [
 
@@ -110,16 +110,10 @@
           "codeOffers" : [
 
           ],
-          "displayPrice" : "39.99",
+          "displayPrice" : "56.00",
           "familyShareable" : false,
           "freeTrials" : [
-            {
-              "id" : "C5D7E9F1-3456-789A-CDEF-012345678901",
-              "offerID" : "free_trial_7day",
-              "period" : "P7D",
-              "periodCount" : 1,
-              "type" : "freeTrial"
-            }
+
           ],
           "groupNumber" : 2,
           "internalID" : "C5D7E9F1-3456-789A-CDEF-012345678902",

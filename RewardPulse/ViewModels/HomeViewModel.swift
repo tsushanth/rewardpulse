@@ -4,6 +4,7 @@ import SwiftData
 @MainActor
 final class HomeViewModel: ObservableObject {
     @Published var balanceCents: Int = 0
+    @Published var isPremium: Bool = false
     @Published var minimumPayoutCents: Int = 500
     @Published var streakDays: Int = 0
     @Published var streakMultiplier: Double = 1.0
@@ -18,21 +19,19 @@ final class HomeViewModel: ObservableObject {
 
     private let apiService: APIService
     private let analyticsService: AnalyticsService
-    private let rcService: RevenueCatService
 
     init(apiService: APIService = .shared,
-         analyticsService: AnalyticsService = .shared,
-         rcService: RevenueCatService = .shared) {
+         analyticsService: AnalyticsService = .shared) {
         self.apiService = apiService
         self.analyticsService = analyticsService
-        self.rcService = rcService
     }
 
     func onAppear() async {
         isLoading = true
         defer { isLoading = false }
 
-        minimumPayoutCents = rcService.isEntitled ? Constants.premiumPayoutThresholdCents : Constants.freePayoutThresholdCents
+        isPremium = PremiumManager.shared.isPremium
+        minimumPayoutCents = PremiumManager.shared.minimumPayoutCents
 
         async let balance = apiService.fetchBalance()
         async let streak  = apiService.fetchStreak()

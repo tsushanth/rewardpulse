@@ -1,86 +1,44 @@
-import RevenueCat
-import StoreKit
 import Foundation
+import StoreKit
 
-struct RevenueCatOffering {
-    let packageIdentifier: String
-    let localizedPriceString: String
-    let productIdentifier: String
-    let planType: ProductPlanType
-
-    init(package: Package) {
-        self.packageIdentifier = package.identifier
-        self.localizedPriceString = package.localizedPriceString
-        self.productIdentifier = package.storeProduct.productIdentifier
-        if package.identifier.contains("weekly") {
-            self.planType = .weekly
-        } else if package.identifier.contains("yearly") || package.identifier.contains("annual") {
-            self.planType = .yearly
-        } else if package.identifier.contains("lifetime") {
-            self.planType = .lifetime
-        } else {
-            self.planType = .yearly
-        }
-    }
-}
+// MARK: - RevenueCatService (Legacy Stub)
+//
+// All subscription logic has been migrated to StoreKitManager (native StoreKit 2).
+// This class is kept as a thin forwarding stub so existing call sites compile without
+// changes. Do not add new functionality here — use StoreKitManager / PremiumManager.
 
 @MainActor
 final class RevenueCatService: ObservableObject {
     static let shared = RevenueCatService()
     private init() {}
 
-    @Published var isEntitled = false
+    /// Forwards to StoreKitManager for live accuracy.
+    var isEntitled: Bool { StoreKitManager.shared.isPremium }
 
-    func configure(apiKey: String) {
-        Purchases.configure(withAPIKey: apiKey)
-        Purchases.logLevel = .warn
-    }
+    /// No-op — RevenueCat SDK removed; configuration is handled by StoreKitManager.
+    func configure(apiKey: String) {}
 
+    /// Refreshes entitlements from the App Store.
     func checkEntitlement() async {
-        do {
-            let info = try await Purchases.shared.customerInfo()
-            isEntitled = info.entitlements["premium"]?.isActive == true
-        } catch {
-            isEntitled = false
-        }
+        await StoreKitManager.shared.checkCurrentEntitlements()
     }
 
-    func fetchCurrentOffering() async -> [RevenueCatOffering] {
-        do {
-            let offerings = try await Purchases.shared.offerings()
-            return offerings.current?.availablePackages.map { RevenueCatOffering(package: $0) } ?? []
-        } catch {
-            return []
-        }
-    }
-
-    func purchase(plan: ProductPlanType) async throws {
-        let offerings = try await Purchases.shared.offerings()
-        guard let package = offerings.current?.package(identifier: plan.rcIdentifier) else { return }
-        let (_, info, _) = try await Purchases.shared.purchase(package: package)
-        isEntitled = info.entitlements["premium"]?.isActive == true
-    }
-
+    /// Delegates restore to StoreKitManager.
     func restorePurchases() async throws {
-        let info = try await Purchases.shared.restorePurchases()
-        isEntitled = info.entitlements["premium"]?.isActive == true
+        try await StoreKitManager.shared.restorePurchases()
     }
 
-    nonisolated func syncTransaction(_ transaction: StoreKit.Transaction) async {
-        // RevenueCat automatically handles StoreKit 2 transactions when configured
-    }
+    /// No-op — StoreKitManager handles transaction updates natively.
+    func syncTransaction(_ transaction: StoreKit.Transaction) async {}
 }
 
-enum ProductPlanType: String, CaseIterable {
-    case weekly, yearly, lifetime
+// MARK: - ProductPlanType
+//
+// Kept here for backwards compatibility with PaywallViewModel, PlanPickerView, etc.
+// `rcIdentifier` removed — use Constants.ProductID directly.
 
-    var rcIdentifier: String {
-        switch self {
-        case .weekly:   return "$rc_weekly"
-        case .yearly:   return "$rc_annual"
-        case .lifetime: return "$rc_lifetime"
-        }
-    }
+enum ProductPlanType: String, CaseIterable, Hashable {
+    case weekly, yearly, lifetime
 
     var displayName: String {
         switch self {
@@ -90,11 +48,31 @@ enum ProductPlanType: String, CaseIterable {
         }
     }
 
-    var priceDisplay: String {
+    var productID: String {
+        switch self {
+        case .weekly:   return Constants.ProductID.weeklySubscription
+        case .yearly:   return Constants.ProductID.yearlySubscription
+        case .lifetime: return Constants.ProductID.lifetimeSubscription
+        }
+    }
+
+    /// Fallback display price shown before StoreKit products are loaded.
+    var fallbackPrice: String {
         switch self {
         case .weekly:   return "$4.00/week"
         case .yearly:   return "$56.00/year"
         case .lifetime: return "$92.80 one-time"
         }
     }
+}
+
+// MARK: - RevenueCatOffering (Legacy Stub)
+//
+// Kept for source compatibility with PlanPickerView until that view is updated.
+
+struct RevenueCatOffering {
+    let packageIdentifier: String
+    let localizedPriceString: String
+    let productIdentifier: String
+    let planType: ProductPlanType
 }
