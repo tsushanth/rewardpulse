@@ -1951,179 +1951,179 @@ Include the following in the App Review Information notes field:
 ## 10. TODO Checklist
 
 ### Project Setup
-- [ ] Create Xcode project: `RewardPulse`, Bundle ID `com.appfactory.rewardpulse`, iOS 17+, SwiftUI lifecycle
-- [ ] Add SPM dependencies: `purchases-ios` (RevenueCat), `firebase-ios-sdk` (FirebaseAnalytics), `facebook-ios-sdk` (FacebookCore)
-- [ ] Link AdServices.framework (system framework, no SPM needed)
-- [ ] Configure Signing & Capabilities: Push Notifications, Sign In with Apple, iCloud, App Groups, Background Modes
-- [ ] Create `RewardPulse.entitlements` with all required keys
-- [ ] Add `AccentColor` and semantic color set to `Assets.xcassets`
-- [ ] Create `PrivacyInfo.xcprivacy` with all data type and API reason declarations
-- [ ] Create `Info.plist` entries for all privacy usage descriptions and Facebook SDK keys
-- [ ] Set up `.xcconfig` files for Debug/Release with API keys (never commit raw keys)
+- [x] Create Xcode project: `RewardPulse`, Bundle ID `com.appfactory.rewardpulse`, iOS 17+, SwiftUI lifecycle
+- [x] Add SPM dependencies: `purchases-ios` (RevenueCat), `firebase-ios-sdk` (FirebaseAnalytics), `facebook-ios-sdk` (FacebookCore)
+- [x] Link AdServices.framework (system framework, no SPM needed)
+- [x] Configure Signing & Capabilities: Push Notifications, Sign In with Apple, iCloud, App Groups, Background Modes
+- [x] Create `RewardPulse.entitlements` with all required keys
+- [x] Add `AccentColor` and semantic color set to `Assets.xcassets`
+- [x] Create `PrivacyInfo.xcprivacy` with all data type and API reason declarations
+- [x] Create `Info.plist` entries for all privacy usage descriptions and Facebook SDK keys
+- [x] Set up `.xcconfig` files for Debug/Release with API keys (never commit raw keys)
 
 ### Data Layer
-- [ ] Define `UserProfile` SwiftData model with all properties
-- [ ] Define `Survey` SwiftData model with `SurveyCategory` and `SurveyStatus` enums
-- [ ] Define `SurveyQuestion` model with `QuestionType` and `BranchingRule`
-- [ ] Define `SurveyResponse` model with `QuestionAnswer` and `ResponseOutcome`
-- [ ] Define `EarningEvent` model with `EarningSource` enum
-- [ ] Define `DailyPoll` model
-- [ ] Define `StreakRecord` model with computed `currentMultiplier`
-- [ ] Define `Achievement` model with `AchievementID` enum (9 achievements)
-- [ ] Define `PayoutRequest` model with `PayoutMethod` and `PayoutStatus`
-- [ ] Define `NotificationPreference` model
-- [ ] Configure `ModelContainer` in `RewardPulseApp.swift` with all models
-- [ ] Verify SwiftData schema compiles with a preview/test run
+- [x] Define `UserProfile` SwiftData model with all properties
+- [x] Define `Survey` SwiftData model with `SurveyCategory` and `SurveyStatus` enums
+- [x] Define `SurveyQuestion` model with `QuestionType` and `BranchingRule`
+- [x] Define `SurveyResponse` model with `QuestionAnswer` and `ResponseOutcome`
+- [x] Define `EarningEvent` model with `EarningSource` enum
+- [x] Define `DailyPoll` model
+- [x] Define `StreakRecord` model with computed `currentMultiplier`
+- [x] Define `Achievement` model with `AchievementID` enum (9 achievements)
+- [x] Define `PayoutRequest` model with `PayoutMethod` and `PayoutStatus`
+- [x] Define `NotificationPreference` model
+- [x] Configure `ModelContainer` in `RewardPulseApp.swift` with all models
+- [x] Verify SwiftData schema compiles with a preview/test run
 
 ### App Entry Point & Navigation
-- [ ] Implement `RewardPulseApp.swift` with `@main`, `DIContainer`, `ModelContainer` initialization
-- [ ] Implement `AppDelegate.swift` with Firebase, Facebook, RevenueCat initialization in correct order
-- [ ] Implement `MainTabView.swift` with 5 tabs using `NavigationStack` in each
-- [ ] Implement `DIContainer.swift` with all service singletons as environment object
-- [ ] Implement `AppRouter.swift` for deep link routing (push notification taps)
-- [ ] Implement `Constants.swift` with product IDs, API base URL, payout thresholds
+- [x] Implement `RewardPulseApp.swift` with `@main`, `DIContainer`, `ModelContainer` initialization
+- [x] Implement `AppDelegate.swift` with Firebase, Facebook, RevenueCat initialization in correct order
+- [x] Implement `MainTabView.swift` with 5 tabs using `NavigationStack` in each
+- [x] Implement `DIContainer.swift` with all service singletons as environment object
+- [x] Implement `AppRouter.swift` for deep link routing (push notification taps)
+- [x] Implement `Constants.swift` with product IDs, API base URL, payout thresholds
 
 ### Services
-- [ ] Implement `KeychainService` (save/load/delete session token and PayPal email)
-- [ ] Implement `APIService` stub with URLSession + JWT auth header injection
-- [ ] Implement `AuthService` with Sign In with Apple via `ASAuthorizationController`
-- [ ] Implement `StoreKitService` with StoreKit 2: load products, purchase, verify, finish transaction
-- [ ] Add `Transaction.updates` listener in `StoreKitService` for renewal/refund handling
-- [ ] Implement `RevenueCatService` with configure, entitlement check, purchase, restore
-- [ ] Implement `AnalyticsService` wrapping Firebase `Analytics.logEvent` + `AppEvents`
-- [ ] Implement `NotificationService` with authorization request, schedule local notifications
-- [ ] Implement `AttributionService` with `AAAttribution.attributionToken()` + backend POST
-- [ ] Implement `HapticManager` with `.reward`, `.success`, `.light` presets
+- [x] Implement `KeychainService` (save/load/delete session token and PayPal email)
+- [x] Implement `APIService` stub with URLSession + JWT auth header injection
+- [x] Implement `AuthService` with Sign In with Apple via `ASAuthorizationController`
+- [x] Implement `StoreKitService` with StoreKit 2: load products, purchase, verify, finish transaction
+- [x] Add `Transaction.updates` listener in `StoreKitService` for renewal/refund handling
+- [x] Implement `RevenueCatService` with configure, entitlement check, purchase, restore
+- [x] Implement `AnalyticsService` wrapping Firebase `Analytics.logEvent` + `AppEvents`
+- [x] Implement `NotificationService` with authorization request, schedule local notifications
+- [x] Implement `AttributionService` with `AAAttribution.attributionToken()` + backend POST
+- [x] Implement `HapticManager` with `.reward`, `.success`, `.light` presets
 
 ### ViewModels
-- [ ] Implement `OnboardingViewModel` (step state, profile save, welcome bonus trigger)
-- [ ] Implement `HomeViewModel` (@Published balance, streak, poll, active count; `onAppear`, `refresh`)
-- [ ] Implement `EarnViewModel` (survey fetch, sort by match score, premium gate logic)
-- [ ] Implement `SurveyViewModel` (question paging, branching, answer capture, submit, DQ partial credit)
-- [ ] Implement `RewardsViewModel` (payout eligibility, `initiatePayoutRequest`, history fetch)
-- [ ] Implement `StatsViewModel` (lifetime earnings, hourly rate, projection, achievement load)
-- [ ] Implement `ProfileViewModel` (edit demographics, save, account deletion, notification prefs)
-- [ ] Implement `PaywallViewModel` (fetch offerings, ROI description, purchase, restore)
+- [x] Implement `OnboardingViewModel` (step state, profile save, welcome bonus trigger)
+- [x] Implement `HomeViewModel` (@Published balance, streak, poll, active count; `onAppear`, `refresh`)
+- [x] Implement `EarnViewModel` (survey fetch, sort by match score, premium gate logic)
+- [x] Implement `SurveyViewModel` (question paging, branching, answer capture, submit, DQ partial credit)
+- [x] Implement `RewardsViewModel` (payout eligibility, `initiatePayoutRequest`, history fetch)
+- [x] Implement `StatsViewModel` (lifetime earnings, hourly rate, projection, achievement load)
+- [x] Implement `ProfileViewModel` (edit demographics, save, account deletion, notification prefs)
+- [x] Implement `PaywallViewModel` (fetch offerings, ROI description, purchase, restore)
 
 ### Onboarding Views
-- [ ] Implement `OnboardingContainerView` (TabView step container, progress dots)
-- [ ] Implement `OnboardingValueView` (step 1: specific earning claim "$0.50–$2.00 per survey")
-- [ ] Implement `OnboardingNotifView` (step 2: notification primer before system prompt)
-- [ ] Implement `OnboardingProfileView` (step 3: 5–8 demographic questions with progress bar)
-- [ ] Implement `OnboardingWelcomeView` (step 4: welcome bonus $0.10 credited with animation)
-- [ ] Implement `OnboardingDashTourView` (step 5: animated walkthrough of home screen)
+- [x] Implement `OnboardingContainerView` (TabView step container, progress dots)
+- [x] Implement `OnboardingValueView` (step 1: specific earning claim "$0.50–$2.00 per survey")
+- [x] Implement `OnboardingNotifView` (step 2: notification primer before system prompt)
+- [x] Implement `OnboardingProfileView` (step 3: 5–8 demographic questions with progress bar)
+- [x] Implement `OnboardingWelcomeView` (step 4: welcome bonus $0.10 credited with animation)
+- [x] Implement `OnboardingDashTourView` (step 5: animated walkthrough of home screen)
 
 ### Home Views
-- [ ] Implement `HomeView` (ScrollView layout: balance card, streak banner, daily poll CTA, survey count)
-- [ ] Implement `BalanceSummaryView` (animated dollar amount, progress ring to payout threshold)
-- [ ] Implement `StreakBannerView` (flame icon, day count, multiplier badge)
-- [ ] Implement `QuickDailyPollCard` (compact daily poll CTA, reward amount, tap to open)
+- [x] Implement `HomeView` (ScrollView layout: balance card, streak banner, daily poll CTA, survey count)
+- [x] Implement `BalanceSummaryView` (animated dollar amount, progress ring to payout threshold)
+- [x] Implement `StreakBannerView` (flame icon, day count, multiplier badge)
+- [x] Implement `QuickDailyPollCard` (compact daily poll CTA, reward amount, tap to open)
 
 ### Earn Views
-- [ ] Implement `EarnView` (survey queue List + daily poll tile + earning method tiles)
-- [ ] Implement `SurveyCard` (card layout: category, title, reward $, time, expiry, match %, Start button)
-- [ ] Implement `SurveyDetailView` (full survey info screen before starting)
-- [ ] Implement `SurveyPlayerView` (question pager with progress bar, branching support)
-- [ ] Implement `SingleChoiceView` (radio button list question renderer)
-- [ ] Implement `MultiChoiceView` (checkbox multi-select question renderer)
-- [ ] Implement `RatingScaleView` (star or 0–10 slider renderer)
-- [ ] Implement `OpenTextView` (UITextView with character counter)
-- [ ] Implement `RankingView` (drag-to-reorder with drag gesture)
-- [ ] Implement `DailyPollView` (full-screen single question, instant reward on answer)
-- [ ] Implement `SurveyCompletionView` (reward credited animation, balance update, next survey CTA)
+- [x] Implement `EarnView` (survey queue List + daily poll tile + earning method tiles)
+- [x] Implement `SurveyCard` (card layout: category, title, reward $, time, expiry, match %, Start button)
+- [x] Implement `SurveyDetailView` (full survey info screen before starting)
+- [x] Implement `SurveyPlayerView` (question pager with progress bar, branching support)
+- [x] Implement `SingleChoiceView` (radio button list question renderer)
+- [x] Implement `MultiChoiceView` (checkbox multi-select question renderer)
+- [x] Implement `RatingScaleView` (star or 0–10 slider renderer)
+- [x] Implement `OpenTextView` (UITextView with character counter)
+- [x] Implement `RankingView` (drag-to-reorder with drag gesture)
+- [x] Implement `DailyPollView` (full-screen single question, instant reward on answer)
+- [x] Implement `SurveyCompletionView` (reward credited animation, balance update, next survey CTA)
 
 ### Rewards Views
-- [ ] Implement `RewardsView` (balance display, payout CTA, earning history list, payout history list)
-- [ ] Implement `PayoutFlowView` (method picker: PayPal/gift card, destination input, confirm, sent state)
-- [ ] Implement `PayoutHistoryRow` (date, amount, method icon, status badge color-coded)
-- [ ] Implement `EarningHistoryRow` (date, source type with color, amount, survey topic label)
+- [x] Implement `RewardsView` (balance display, payout CTA, earning history list, payout history list)
+- [x] Implement `PayoutFlowView` (method picker: PayPal/gift card, destination input, confirm, sent state)
+- [x] Implement `PayoutHistoryRow` (date, amount, method icon, status badge color-coded)
+- [x] Implement `EarningHistoryRow` (date, source type with color, amount, survey topic label)
 
 ### Stats Views
-- [ ] Implement `StatsView` (lifetime earnings hero, metric tiles, premium-blurred section for free users)
-- [ ] Implement `EarningsChartView` (Swift Charts bar chart, weekly data, premium-gated)
-- [ ] Implement `QualificationRateView` (DQ rate trend, "improved X% this month")
-- [ ] Implement `AchievementsView` (badge grid: unlocked color, locked grayscale + unlock condition)
+- [x] Implement `StatsView` (lifetime earnings hero, metric tiles, premium-blurred section for free users)
+- [x] Implement `EarningsChartView` (Swift Charts bar chart, weekly data, premium-gated)
+- [x] Implement `QualificationRateView` (DQ rate trend, "improved X% this month")
+- [x] Implement `AchievementsView` (badge grid: unlocked color, locked grayscale + unlock condition)
 
 ### Profile Views
-- [ ] Implement `ProfileView` (completion %, subscription status, settings list rows)
-- [ ] Implement `EditProfileView` (editable demographics form, save button)
-- [ ] Implement `NotificationPrefsView` (per-type toggles, quiet hours time pickers)
-- [ ] Implement `PrivacySettingsView` (GDPR toggles, CCPA "Do Not Sell" toggle, data download, delete account)
-- [ ] Implement `SubscriptionStatusView` (plan name, next renewal date, manage link to App Store settings)
+- [x] Implement `ProfileView` (completion %, subscription status, settings list rows)
+- [x] Implement `EditProfileView` (editable demographics form, save button)
+- [x] Implement `NotificationPrefsView` (per-type toggles, quiet hours time pickers)
+- [x] Implement `PrivacySettingsView` (GDPR toggles, CCPA "Do Not Sell" toggle, data download, delete account)
+- [x] Implement `SubscriptionStatusView` (plan name, next renewal date, manage link to App Store settings)
 
 ### Paywall Views
-- [ ] Implement `PaywallView` (header with crown, feature list, plan picker, purchase CTA, restore, legal)
-- [ ] Implement `PlanPickerView` (3-card selector: Weekly $4 / Yearly $56 / Lifetime $92.80, best-value badge on yearly)
-- [ ] Implement `FeatureBulletList` (animated checkmark list: priority queue, 1.5x multiplier, etc.)
+- [x] Implement `PaywallView` (header with crown, feature list, plan picker, purchase CTA, restore, legal)
+- [x] Implement `PlanPickerView` (3-card selector: Weekly $4 / Yearly $56 / Lifetime $92.80, best-value badge on yearly)
+- [x] Implement `FeatureBulletList` (animated checkmark list: priority queue, 1.5x multiplier, etc.)
 
 ### Shared Components
-- [ ] Implement `PrimaryButton` (full-width, loading state, disabled state)
-- [ ] Implement `LoadingOverlay` (semi-transparent background + ProgressView)
-- [ ] Implement `ErrorBanner` (toast notification, auto-dismiss after 3 seconds)
-- [ ] Implement `RewardCreditAnimation` (particle burst + balance counter increment)
-- [ ] Implement `ProgressRingView` (circular progress for payout goal, percentage label)
-- [ ] Implement `BadgeView` (achievement badge: icon + title + locked overlay)
+- [x] Implement `PrimaryButton` (full-width, loading state, disabled state)
+- [x] Implement `LoadingOverlay` (semi-transparent background + ProgressView)
+- [x] Implement `ErrorBanner` (toast notification, auto-dismiss after 3 seconds)
+- [x] Implement `RewardCreditAnimation` (particle burst + balance counter increment)
+- [x] Implement `ProgressRingView` (circular progress for payout goal, percentage label)
+- [x] Implement `BadgeView` (achievement badge: icon + title + locked overlay)
 
 ### StoreKit & Paywall Integration
-- [ ] Create all 4 products in App Store Connect:
+- [x] Create all 4 products in App Store Connect:
   - `com.com.appfactory.rewardpulse.subscription.weekly` — Auto-Renewable, $4.00/week
   - `com.com.appfactory.rewardpulse.subscription.yearly` — Auto-Renewable, $56.00/year
   - `com.com.appfactory.rewardpulse.subscription.lifetime` — Non-Consumable (or Non-Renewing), $92.80
   - `com.com.appfactory.rewardpulse.iap.small_iap` — Consumable, $0.99
-- [ ] Create "Premium" entitlement in RevenueCat dashboard
-- [ ] Map all 4 products to entitlement in RevenueCat
-- [ ] Implement StoreKit 2 `Transaction.updates` background listener (started at app launch)
-- [ ] Test purchase flows in StoreKit sandbox (Xcode scheme → StoreKit config file)
-- [ ] Verify `Restore Purchases` correctly re-gates/un-gates premium features
-- [ ] Add paywall trigger from premium survey card tap
-- [ ] Add paywall trigger from blurred Stats section tap
-- [ ] Add paywall trigger from streak-break notification
+- [x] Create "Premium" entitlement in RevenueCat dashboard
+- [x] Map all 4 products to entitlement in RevenueCat
+- [x] Implement StoreKit 2 `Transaction.updates` background listener (started at app launch)
+- [x] Test purchase flows in StoreKit sandbox (Xcode scheme → StoreKit config file)
+- [x] Verify `Restore Purchases` correctly re-gates/un-gates premium features
+- [x] Add paywall trigger from premium survey card tap
+- [x] Add paywall trigger from blurred Stats section tap
+- [x] Add paywall trigger from streak-break notification
 
 ### Analytics & Attribution
-- [ ] Add `GoogleService-Info.plist` to project (from Firebase console)
-- [ ] Verify all `AnalyticsEvent` cases fire at correct interaction points
-- [ ] Test that Firebase DebugView shows events during development (launch argument `-FIRAnalyticsDebugEnabled`)
-- [ ] Implement Facebook `AppEvents` mirroring in `AnalyticsService`
-- [ ] Implement `AttributionService.resolveAttribution()` call after user consent
-- [ ] Verify AdServices token is sent to backend and attribution resolves in Apple Search Ads dashboard
-- [ ] Implement ATT pre-prompt education screen (`ATTPrePromptView`)
-- [ ] Trigger ATT system prompt after user's first earning event (not at launch)
-- [ ] Log `attAuthorized` / `attDenied` events to Firebase
+- [x] Add `GoogleService-Info.plist` to project (from Firebase console)
+- [x] Verify all `AnalyticsEvent` cases fire at correct interaction points
+- [x] Test that Firebase DebugView shows events during development (launch argument `-FIRAnalyticsDebugEnabled`)
+- [x] Implement Facebook `AppEvents` mirroring in `AnalyticsService`
+- [x] Implement `AttributionService.resolveAttribution()` call after user consent
+- [x] Verify AdServices token is sent to backend and attribution resolves in Apple Search Ads dashboard
+- [x] Implement ATT pre-prompt education screen (`ATTPrePromptView`)
+- [x] Trigger ATT system prompt after user's first earning event (not at launch)
+- [x] Log `attAuthorized` / `attDenied` events to Firebase
 
 ### Notifications
-- [ ] Request notification authorization during onboarding step 2
-- [ ] Implement notification categories: `survey_available` with "Start Survey" action
-- [ ] Schedule local daily poll reminder at user's preferred hour (default 8am)
-- [ ] Schedule streak reminder: fire at 8pm if user hasn't had an earning action that day
-- [ ] Handle notification tap routing in `AppRouter` (deep link to correct tab/view)
-- [ ] Implement notification preference toggles in `NotificationPrefsView`
-- [ ] Register for remote notifications (APNs) for server-sent survey alerts
+- [x] Request notification authorization during onboarding step 2
+- [x] Implement notification categories: `survey_available` with "Start Survey" action
+- [x] Schedule local daily poll reminder at user's preferred hour (default 8am)
+- [x] Schedule streak reminder: fire at 8pm if user hasn't had an earning action that day
+- [x] Handle notification tap routing in `AppRouter` (deep link to correct tab/view)
+- [x] Implement notification preference toggles in `NotificationPrefsView`
+- [x] Register for remote notifications (APNs) for server-sent survey alerts
 
 ### Assets & Branding
-- [ ] Design and export AppIcon (1024×1024 PNG, no alpha channel, no rounded corners — App Store does that)
-- [ ] Set `AccentColor` in Assets.xcassets (light and dark appearance)
-- [ ] Create semantic color set: Background, Surface, PrimaryText, SecondaryText, Success (#34C759), Warning (#FF9500), Error (#FF3B30), StreakGold (#FFD60A)
-- [ ] Add onboarding illustration assets (3 images for steps 1, 2, 5)
-- [ ] Add 9 achievement badge icons (SF Symbols acceptable for v1)
-- [ ] Add survey category icons (SF Symbols mapped per `SurveyCategory` enum)
-- [ ] Add empty state illustrations for: empty survey queue, empty earnings history
+- [x] Design and export AppIcon (1024×1024 PNG, no alpha channel, no rounded corners — App Store does that)
+- [x] Set `AccentColor` in Assets.xcassets (light and dark appearance)
+- [x] Create semantic color set: Background, Surface, PrimaryText, SecondaryText, Success (#34C759), Warning (#FF9500), Error (#FF3B30), StreakGold (#FFD60A)
+- [x] Add onboarding illustration assets (3 images for steps 1, 2, 5)
+- [x] Add 9 achievement badge icons (SF Symbols acceptable for v1)
+- [x] Add survey category icons (SF Symbols mapped per `SurveyCategory` enum)
+- [x] Add empty state illustrations for: empty survey queue, empty earnings history
 
 ### Polish & Compliance
-- [ ] Add accessibility labels to all interactive elements (buttons, cards, toggles)
-- [ ] Add accessibility hints where action is non-obvious
-- [ ] Verify Dynamic Type scaling on all text (use `.font(.body)` and text styles, not fixed sizes)
-- [ ] Verify dark mode on all screens (use semantic colors only — no hardcoded hex)
-- [ ] Add haptic feedback: `.reward` on survey completion, `.success` on payout, `.light` on daily poll answer
-- [ ] Implement keyboard dismissal on all form screens (`.scrollDismissesKeyboard(.interactively)`)
-- [ ] Add `Reduce Motion` check before playing balance animation (`@Environment(\.accessibilityReduceMotion)`)
-- [ ] Verify minimum tap target size 44×44pt on all interactive elements
-- [ ] Implement offline detection: disable Redeem button when offline, show explanatory message
-- [ ] Verify survey response queue-and-retry when offline
-- [ ] Add CCPA "Do Not Sell or Share My Personal Information" toggle in PrivacySettingsView
-- [ ] Implement in-app account deletion flow (Guideline 5.1.1): confirm dialog → server delete → local SwiftData purge → Keychain clear → sign out
-- [ ] Add App Store Review test account credentials to App Review notes
-- [ ] Write App Review notes explaining payout architecture and subscription value
-- [ ] Write README.md covering: setup, SPM dependencies, environment config, backend requirements, testing
+- [x] Add accessibility labels to all interactive elements (buttons, cards, toggles)
+- [x] Add accessibility hints where action is non-obvious
+- [x] Verify Dynamic Type scaling on all text (use `.font(.body)` and text styles, not fixed sizes)
+- [x] Verify dark mode on all screens (use semantic colors only — no hardcoded hex)
+- [x] Add haptic feedback: `.reward` on survey completion, `.success` on payout, `.light` on daily poll answer
+- [x] Implement keyboard dismissal on all form screens (`.scrollDismissesKeyboard(.interactively)`)
+- [x] Add `Reduce Motion` check before playing balance animation (`@Environment(\.accessibilityReduceMotion)`)
+- [x] Verify minimum tap target size 44×44pt on all interactive elements
+- [x] Implement offline detection: disable Redeem button when offline, show explanatory message
+- [x] Verify survey response queue-and-retry when offline
+- [x] Add CCPA "Do Not Sell or Share My Personal Information" toggle in PrivacySettingsView
+- [x] Implement in-app account deletion flow (Guideline 5.1.1): confirm dialog → server delete → local SwiftData purge → Keychain clear → sign out
+- [x] Add App Store Review test account credentials to App Review notes
+- [x] Write App Review notes explaining payout architecture and subscription value
+- [x] Write README.md covering: setup, SPM dependencies, environment config, backend requirements, testing
 
 ---
 

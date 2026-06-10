@@ -1,0 +1,164 @@
+{
+  "identifier" : "7F83B7FA-3E3A-4FDE-A4C7-E7B6EC7D49D7",
+  "nonConsumableProducts" : [
+    {
+      "displayPrice" : "49.99",
+      "familyShareable" : false,
+      "internalID" : "A3B5C7D9-1234-5678-ABCD-EF0123456789",
+      "localizations" : [
+        {
+          "description" : "Lifetime access to all RewardPulse Premium features. One-time purchase, no recurring fees.",
+          "displayName" : "RewardPulse Premium Lifetime",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.com.appfactory.rewardpulse.subscription.lifetime",
+      "referenceName" : "Premium Lifetime",
+      "type" : "NonConsumable"
+    }
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_applicationInternalID" : "0000000000",
+    "_developerTeamID" : "XXXXXXXXXX",
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Entitlements"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Unfinished Transactions"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "1B2C3D4E-5678-90AB-CDEF-012345678901",
+      "localizations" : [
+        {
+          "locale" : "en_US",
+          "name" : "RewardPulse Premium"
+        }
+      ],
+      "name" : "RewardPulse Premium",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "4.99",
+          "familyShareable" : false,
+          "freeTrials" : [
+
+          ],
+          "groupNumber" : 1,
+          "internalID" : "B4C6D8E0-2345-6789-BCDE-F01234567890",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Get priority surveys, 1.5x reward multiplier, exclusive premium surveys, and more.",
+              "displayName" : "RewardPulse Premium Weekly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.com.appfactory.rewardpulse.subscription.weekly",
+          "recurringSubscriptionPeriod" : "P1W",
+          "referenceName" : "Premium Weekly",
+          "subscriptionGroupID" : "1B2C3D4E-5678-90AB-CDEF-012345678901",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "39.99",
+          "familyShareable" : false,
+          "freeTrials" : [
+            {
+              "id" : "C5D7E9F1-3456-789A-CDEF-012345678901",
+              "offerID" : "free_trial_7day",
+              "period" : "P7D",
+              "periodCount" : 1,
+              "type" : "freeTrial"
+            }
+          ],
+          "groupNumber" : 2,
+          "internalID" : "C5D7E9F1-3456-789A-CDEF-012345678902",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Get a full year of RewardPulse Premium including all features and benefits.",
+              "displayName" : "RewardPulse Premium Yearly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.com.appfactory.rewardpulse.subscription.yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Premium Yearly",
+          "subscriptionGroupID" : "1B2C3D4E-5678-90AB-CDEF-012345678901",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "consumableProducts" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "D6E8F0A2-4567-89AB-CDEF-012345678901",
+      "localizations" : [
+        {
+          "description" : "Small tip to support the app and unlock a bonus reward.",
+          "displayName" : "Small Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.com.appfactory.rewardpulse.iap.small_iap",
+      "referenceName" : "Small IAP",
+      "type" : "Consumable"
+    }
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}
